@@ -1,16 +1,29 @@
-var c = document.getElementById('c'), t = 0, n = 1, f = [],
+var c = document.getElementById('c'), t = 0, n = 1, f = [], h = 600;
     vf = [
+        [2,2,2,2,2,2],
+        [2,2,2,2,2,2],
+        [2,2,2,2,2,2],
+        [2,2,2,2,2,2],
+        [2,2,2,2,2,2],
+        [2,2,2,2,2,2]
     ];
-c.width = 800;
-c.height = 600;
+c.height = c.width = h;
 c = c.getContext('2d');
 
 c.strokeStyle = "#CCC";
 c.lineWidth = 0.5;
 
+function dx(x, y) {
+    var v1 = x/h*6,
+        v2 = y/h*6;
+
+    return vf[parseInt(v2)][parseInt(v1)];
+}
+
 function flake(s, x, y, r) {
     function step() {
         y = 1 + y;
+        x += dx(x, y);
         c.translate(x, y);
     }
     this.d = function () {
@@ -40,7 +53,7 @@ while (ii--) {
 }
 
 di = setInterval(function () {
-    c.clearRect(0, 0, 800, 600);
+    c.clearRect(0, 0, h, h);
     ii = n;
     while(ii--){f[ii].d();}
     t++;
