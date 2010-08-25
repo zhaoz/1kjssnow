@@ -1,15 +1,14 @@
 var c = document.getElementById('c'), t = 0, n = 1, f = [], h = 600;
     vf = [
-        [2,2,2,2,2,2],
-        [2,2,2,2,2,2],
-        [2,2,2,2,2,2],
-        [2,2,2,2,2,2],
-        [2,2,2,2,2,2],
-        [2,2,2,2,2,2]
+        [2,3,6,8,2,0],
+        [2,3,6,8,2,0],
+        [2,3,6,8,2,0],
+        [2,3,6,8,2,0],
+        [2,3,6,8,2,0],
+        [2,3,6,8,2,0]
     ];
 c.height = c.width = h;
 c = c.getContext('2d');
-
 c.strokeStyle = "#CCC";
 c.lineWidth = 0.5;
 
@@ -17,13 +16,16 @@ function dx(x, y) {
     var v1 = x/h*6,
         v2 = y/h*6;
 
-    return vf[parseInt(v2)][parseInt(v1)];
+    // need to do some interpolation
+    return vf[Math.round(v2)][Math.round(v1)];
 }
 
 function flake(s, x, y, r) {
+    var v = 0;
     function step() {
         y = 1 + y;
-        x += dx(x, y);
+        x = v + x;
+        v = dx(x, y);
         c.translate(x, y);
     }
     this.d = function () {
