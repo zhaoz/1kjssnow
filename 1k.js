@@ -1,4 +1,4 @@
-var c=document.getElementById('c'),t=0,n=2,f=[],h=600,m=Math,p=m.PI;
+var c=document.getElementById('c'),t=0,n=2,f=[],h=600,m=Math,p=m.PI,tmp;
     vf = [
         [1,1,0,-1,1,-1],
         [1,0,1,0,-1,-2],
@@ -23,15 +23,16 @@ function dx(x, y) {
     return vf[v2][v1]/10;
 }
 
-function flake(x, y, nth) {
-    var v = 0, dc=rnd(100)+400,
+function flake(x, y) {
+    var v = 0, dc=m.round(m.r()*100)+400,
         s = m.r()*3+2;
-    this.d = function () {
+    this.d = function (ii,qs,qs2,qs3) {
         if (!dc--) {
-            f.splice(nth, 1);
+            for (tmp in f) {f[tmp]==this;break;}
+            f.splice(tmp, 1);
             return
         }
-        var ii = 9, qs = s/6, qs2 = 4 * qs, qs3=3*qs;
+        ii = 9, qs = s/6, qs2 = 4 * qs, qs3=3*qs;
         c.save();
 
         // step
@@ -60,15 +61,11 @@ function flake(x, y, nth) {
     f.push(this);
 }
 
-function rnd(n) {
-    return m.round(m.r() * n);
-}
-
 di = setInterval(function () {
-    var ii=f.length;
-    if (!rnd(3)) {
-        new flake(m.r()*h, 0, ii++);
+    if (!m.round(m.r()*10)) {
+        new flake(m.r()*h, 0);
     }
+    var ii=f.length;
     c.clearRect(0, 0, h, h);
     while (ii--) {
         f[ii].d();
