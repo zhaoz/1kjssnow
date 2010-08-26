@@ -1,20 +1,20 @@
-var c=document.getElementById('c'),t=0,n=2,f=[],h=600,p=Math.PI;
+var c=document.getElementById('c'),t=0,n=2,f=[],h=600,m=Math,p=m.PI;
     vf = [
         [1,1,0,-1,1,-1],
-        [2,0,1,0,-1,-2],
-        [1,1,-1,1,-2,-1],
+        [1,0,1,0,-1,-2],
+        [1,1,-1,1,-1,-1],
         [1,0,-1,0,0,-1],
         [1,1,1,-1,-1,-1],
-        [1,1,2,-1,1,-3]
+        [1,1,0,-1,1,-1]
     ];
 c.height = c.width = h;
 c = c.getContext('2d');
 c.strokeStyle = "#CCC";
 c.lineWidth = 0.5;
-Math.r=Math.random;
+m.r=m.random;
 
 function dx(x, y) {
-    with (Math) {
+    with (m) {
         var v1 = min(5, max(0, round(x/h*6))),
             v2 = min(5, max(0, round(y/h*6)));
     }
@@ -24,19 +24,19 @@ function dx(x, y) {
 }
 
 function flake(x, y, nth, r) {
-    var v = 0, dc=rnd(100)+400,s=Math.r()*3+2;
-    function step() {
-        y = 1 + y;
-        x = v + x;
-        v += dx(x, y);
-        c.translate(x, y);
-    }
+    var v = 0, dc=rnd(100)+400,s=m.r()*3+2;
     this.d = function () {
-        if (!dc--){f.splice(nth, 1);}
+        if (!dc--){f.splice(nth, 1);return}
         var ii = 9, qs = s/6, qs2 = 4 * qs, qs3=3*qs;
         c.save();
-        step();
-        c.rotate(p*Math.r()*0.25);
+        // step
+        y++;
+        x+=v;
+        v += dx(x, y);
+        c.translate(x, y);
+
+        // random rotation
+        c.rotate(p*m.r()*0.25);
         c.beginPath();
         while (ii--) {
             c.lineTo(0, s);
@@ -55,13 +55,13 @@ function flake(x, y, nth, r) {
 }
 
 function rnd(n) {
-    return Math.round(Math.r() * n);
+    return m.round(m.r() * n);
 }
 
 di = setInterval(function () {
     var ii=f.length;
     if (!rnd(3)) {
-        new flake(Math.r()*h, 0, ii++);
+        new flake(m.r()*h, 0, ii++);
     }
     c.clearRect(0, 0, h, h);
     while (ii--) {
