@@ -23,17 +23,23 @@ function dx(x, y) {
     return vf[v2][v1]/10;
 }
 
-function flake(x, y, nth, r) {
-    var v = 0, dc=rnd(100)+400,s=m.r()*3+2;
+function flake(x, y, nth) {
+    var v = 0, dc=rnd(100)+400,
+        s = m.r()*3+2;
     this.d = function () {
-        if (!dc--){f.splice(nth, 1);return}
+        if (!dc--) {
+            f.splice(nth, 1);
+            return
+        }
         var ii = 9, qs = s/6, qs2 = 4 * qs, qs3=3*qs;
         c.save();
+
         // step
         y++;
         x+=v;
         v += dx(x, y);
         c.translate(x, y);
+        // end step
 
         // random rotation
         c.rotate(p*m.r()*0.25);
