@@ -1,7 +1,7 @@
 var c=document.getElementById('c'),t=0,n=2,f=[],h=600,m=Math,p=m.PI,tmp;
     vf = [
         [1,1,0,-1,1,-1],
-        [1,0,1,0,-1,-2],
+        [1,0,1,0,-.1,-1],
         [1,1,-1,1,-1,-1],
         [1,0,-1,0,0,-1],
         [1,1,1,-1,-1,-1],
@@ -24,7 +24,7 @@ function dx(x, y) {
 }
 
 function flake(x, y) {
-    var v = 0, dc=m.round(m.r()*100)+400,
+    var v = 0, dc=m.round(m.r()*150)+450,
         s = m.r()*3+2;
     this.d = function (ii,qs,qs2,qs3) {
         if (!dc--) {
@@ -62,7 +62,7 @@ function flake(x, y) {
 }
 
 di = setInterval(function () {
-    if (!m.round(m.r()*10)) {
+    if (!m.round(m.r()*5)) {
         new flake(m.r()*h, 0);
     }
     var ii=f.length;
