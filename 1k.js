@@ -1,9 +1,9 @@
 var c=document.getElementById('c'),t=0,n=2,f=[],h=600,p=Math.PI;
     vf = [
         [1,1,0,-1,1,-1],
-        [2,1,1,0,-1,-2],
-        [1,2,1,2,-2,-1],
-        [1,2,1,0,0,-1],
+        [2,0,1,0,-1,-2],
+        [1,1,-1,1,-2,-1],
+        [1,0,-1,0,0,-1],
         [1,1,1,-1,-1,-1],
         [1,1,2,-1,1,-3]
     ];
@@ -60,8 +60,12 @@ function rnd(n) {
 
 di = setInterval(function () {
     var ii=f.length;
-    if (!rnd(3)){new flake(Math.r()*h,0,ii++);}
+    if (!rnd(3)) {
+        new flake(Math.r()*h, 0, ii++);
+    }
     c.clearRect(0, 0, h, h);
-    while(ii--){f[ii].d();}
+    while (ii--) {
+        f[ii].d();
+    }
     t++;
 },50);
