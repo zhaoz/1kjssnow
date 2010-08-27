@@ -31,10 +31,10 @@ function k(x, y) {
         qs = s/6, qs2 = 4 * qs, qs3=3*qs;
     this.d = function () {
         if (!dc--) {
-            for (tmp in f) {
-                if (f[tmp] == this) break;
+            for (n in f) {
+                if (f[n] == this) break;
             }
-            f.splice(tmp, 1);
+            f.splice(n, 1);
             return
         }
 
