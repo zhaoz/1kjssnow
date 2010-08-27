@@ -1,4 +1,4 @@
-var c=document.getElementById('c'),t=0,n=2,f=[],h=600,m=Math,p=m.PI,tmp;
+var c=document.getElementById('c'),t=0,n=2,f=[],h=600,m=Math,p=m.PI;
     vfy = [
         1,1,1,1,1,1,
         -1,1,1,-1,-1,-1,
