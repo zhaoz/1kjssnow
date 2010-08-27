@@ -37,7 +37,6 @@ function flake(x, y) {
             return
         }
         var ii = 9, qs = s/6, qs2 = 4 * qs, qs3=3*qs;
-        c.save();
 
         // step
         y += vy + 0.2;
@@ -49,6 +48,7 @@ function flake(x, y) {
         vx += a[n+36]/80;
         vy += a[n]/300;
         with (c) {
+            save();
             translate(x, y);
             // end step
 
@@ -73,7 +73,7 @@ function flake(x, y) {
 }
 
 di = setInterval(function () {
-    if (!m.q(m.r())) {
+    if (!m.q(m.r()*2)) {
         new flake(m.r()*h, 0);
     }
     var ii=f.length;
