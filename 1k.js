@@ -46,26 +46,28 @@ function flake(x, y) {
             n = min(5, max(0, q(x/h*6))) + 
                 6 * min(5, max(0, q(y/h*6)));
         }
-        vx += vfx[n];
-        vy += vfy[n];
-        c.translate(x, y);
-        // end step
+        vx += vfx[n]/80;
+        vy += vfy[n]/300;
+        with (c) {
+            translate(x, y);
+            // end step
 
-        // random rotation
-        c.rotate(p*m.r()*0.25);
-        c.beginPath();
-        while (ii--) {
-            c.lineTo(0, s);
-            c.moveTo(0, s - qs2);
-            c.lineTo(qs3, s - qs);
-            c.moveTo(0, s - qs2);
-            c.lineTo(-qs3, s - qs);
-            c.moveTo(0, 0);
-            c.rotate(p/4);
+            // random rotation
+            rotate(p*m.r()*0.25);
+            beginPath();
+            while (ii--) {
+                lineTo(0, s);
+                moveTo(0, s - qs2);
+                lineTo(qs3, s - qs);
+                moveTo(0, s - qs2);
+                lineTo(-qs3, s - qs);
+                moveTo(0, 0);
+                rotate(p/4);
+            }
+            stroke();
+            closePath();
+            restore();
         }
-        c.stroke();
-        c.closePath();
-        c.restore();
     };
     f.push(this);
 }
