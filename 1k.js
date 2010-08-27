@@ -27,7 +27,7 @@ function flake(x, y) {
         vy = m.r()+0.5, n,
         dc=m.q(m.r()*150)+450,
         s = m.r()*3+2;
-    this.d = function (ii,qs,qs2,qs3) {
+    this.d = function () {
         if (!dc--) {
             for (tmp in f) {
                 if (f[tmp] == this) break;
@@ -35,13 +35,12 @@ function flake(x, y) {
             f.splice(tmp, 1);
             return
         }
-        ii = 9, qs = s/6, qs2 = 4 * qs, qs3=3*qs;
+        var ii = 9, qs = s/6, qs2 = 4 * qs, qs3=3*qs;
         c.save();
 
         // step
-        y += vy + 0.5;
+        y += vy + 0.2;
         x += vx;
-        // tmp = dx(x, y);
         with (m) {
             n = min(5, max(0, q(x/h*6))) + 
                 6 * min(5, max(0, q(y/h*6)));
