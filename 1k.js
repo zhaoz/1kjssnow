@@ -20,11 +20,13 @@ function dx(x, y) {
     }
 
     // need to do some interpolation
-    return vf[v2][v1]/10;
+    return vf[v2][v1]/80;
 }
 
 function flake(x, y) {
-    var v = 0, dc=m.round(m.r()*150)+450,
+    var vx = m.r()/4 * (m.round(m.r()) ? -1 : 1),
+        vy = m.r()+0.5,
+        dc=m.round(m.r()*150)+450,
         s = m.r()*3+2;
     this.d = function (ii,qs,qs2,qs3) {
         if (!dc--) {
@@ -36,9 +38,9 @@ function flake(x, y) {
         c.save();
 
         // step
-        y++;
-        x+=v;
-        v += dx(x, y);
+        y += vy;
+        x += vx;
+        vx += dx(x, y);
         c.translate(x, y);
         // end step
 
