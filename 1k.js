@@ -1,36 +1,47 @@
 var c=document.getElementById('c'),t=0,n=2,f=[],h=600,m=Math,p=m.PI,tmp;
-    vf = [
-        [1,1,0,-1,1,-1],
-        [1,0,1,0,-.1,-1],
-        [1,1,-1,1,-1,-1],
-        [1,0,-1,0,0,-1],
-        [1,1,1,-1,-1,-1],
-        [1,1,0,-1,1,-1]
+    vfy = [
+        1,1,1,1,1,1,
+        -1,1,1,-1,-1,-1,
+        1,0,-1,0,0,1,
+        -1,-1,0,0,1,1,
+        1,1,-1,0,-1,-1,
+        0,0,0,0,0,0
+    ],
+    vfx = [
+        1,1,0,-1,1,-1,
+        1,0,1,0,-.1,-1,
+        1,1,-1,1,-1,-1,
+        1,0,-1,0,0,-1,
+        1,1,1,-1,-1,-1,
+        1,1,0,-1,1,-1
     ];
 c.height = c.width = h;
 c = c.getContext('2d');
-c.strokeStyle = "#CCC";
-c.lineWidth = 0.5;
+c.strokeStyle = "#DDD";
+c.lineWidth = 0.3;
 m.r=m.random;
+m.q=m.round;
 
 function dx(x, y) {
     with (m) {
-        var v1 = min(5, max(0, round(x/h*6))),
-            v2 = min(5, max(0, round(y/h*6)));
+        var v1 = min(5, max(0, q(x/h*6))),
+            v2 = min(5, max(0, q(y/h*6)));
     }
-
     // need to do some interpolation
-    return vf[v2][v1]/80;
+    return [vfx[v2*6+v1]/80,
+           vfy[v2*6+v1]/300];
 }
 
 function flake(x, y) {
-    var vx = m.r()/4 * (m.round(m.r()) ? -1 : 1),
-        vy = m.r()+0.5,
-        dc=m.round(m.r()*150)+450,
+    var vx = m.r()/4 * (m.q(m.r()) ? -1 : 1),
+        vy = m.r()+0.5, tmp,
+        dc=m.q(m.r()*150)+450,
         s = m.r()*3+2;
     this.d = function (ii,qs,qs2,qs3) {
         if (!dc--) {
-            for (tmp in f) {f[tmp]==this;break;}
+            for (tmp in f) {
+                if (f[tmp] == this) break;
+            }
             f.splice(tmp, 1);
             return
         }
@@ -38,9 +49,11 @@ function flake(x, y) {
         c.save();
 
         // step
-        y += vy;
+        y += vy + 0.5;
         x += vx;
-        vx += dx(x, y);
+        tmp = dx(x, y);
+        vx += tmp[0];
+        vy += tmp[1];
         c.translate(x, y);
         // end step
 
@@ -64,7 +77,7 @@ function flake(x, y) {
 }
 
 di = setInterval(function () {
-    if (!m.round(m.r()*5)) {
+    if (!m.q(m.r())) {
         new flake(m.r()*h, 0);
     }
     var ii=f.length;
