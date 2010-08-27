@@ -27,7 +27,7 @@ function k(x, y) {
     var vx = m.r()/4 * (m.q(m.r()) ? -1 : 1),
         vy = m.r()+0.5, n,
         dc=m.q(m.r()*150)+450,
-        s = m.r()*3+2, ii,
+        s = m.r()*3+2,
         qs = s/6, qs2 = 4 * qs, qs3=3*qs;
     this.d = function () {
         if (!dc--) {
@@ -37,7 +37,6 @@ function k(x, y) {
             f.splice(tmp, 1);
             return
         }
-        ii = 9;
 
         // step
         y += vy + 0.2;
@@ -48,6 +47,8 @@ function k(x, y) {
         }
         vx += a[n+36]/80;
         vy += a[n]/300;
+
+        n = 9;
         with (c) {
             save();
             translate(x, y);
@@ -56,7 +57,7 @@ function k(x, y) {
             // random rotation
             rotate(p*m.r()*0.25);
             beginPath();
-            while (ii--) {
+            while (n--) {
                 lineTo(0, s);
                 moveTo(0, s - qs2);
                 lineTo(qs3, s - qs);
