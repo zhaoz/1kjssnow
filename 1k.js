@@ -23,7 +23,7 @@ c.lineWidth = 0.3;
 m.r=m.random;
 m.q=m.round;
 
-function flake(x, y) {
+function k(x, y) {
     var vx = m.r()/4 * (m.q(m.r()) ? -1 : 1),
         vy = m.r()+0.5, n,
         dc=m.q(m.r()*150)+450,
@@ -74,7 +74,7 @@ function flake(x, y) {
 
 di = setInterval(function () {
     if (!m.q(m.r()*2)) {
-        new flake(m.r()*h, 0);
+        new k(m.r()*h, 0);
     }
     var ii=f.length;
     c.clearRect(0, 0, h, h);
