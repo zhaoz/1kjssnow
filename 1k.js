@@ -1,4 +1,4 @@
-var c=document.body.children[0],t=0,f=[],h=600,m=Math,p=m.PI;
+c = document.body, f=[],h=600,m=Math,p=m.PI,t=0;
     a = [
     //y accel
         1,1,1,1,1,1,
@@ -16,6 +16,8 @@ var c=document.body.children[0],t=0,f=[],h=600,m=Math,p=m.PI;
         1,1,1,-1,-1,-1,
         1,1,0,-1,1,-1
     ];
+c.style.background = "black";
+c=c.children[0];
 c.height = c.width = h;
 c = c.getContext('2d');
 c.strokeStyle = "#DDD";
@@ -74,11 +76,11 @@ function k(x, y) {
     f.push(this);
 }
 
-di = setInterval(function () {
+setInterval(function () {
     if (!m.q(m.r()*2)) {
         new k(m.r()*h, 0);
     }
-    var ii=f.length;
+    ii=f.length;
     c.clearRect(0, 0, h, h);
     while (ii--) {
         f[ii].d();
