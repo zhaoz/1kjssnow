@@ -22,19 +22,9 @@ c.lineWidth = 0.3;
 m.r=m.random;
 m.q=m.round;
 
-function dx(x, y) {
-    with (m) {
-        var v1 = min(5, max(0, q(x/h*6))),
-            v2 = min(5, max(0, q(y/h*6)));
-    }
-    // need to do some interpolation
-    return [vfx[v2*6+v1]/80,
-           vfy[v2*6+v1]/300];
-}
-
 function flake(x, y) {
     var vx = m.r()/4 * (m.q(m.r()) ? -1 : 1),
-        vy = m.r()+0.5, tmp,
+        vy = m.r()+0.5, n,
         dc=m.q(m.r()*150)+450,
         s = m.r()*3+2;
     this.d = function (ii,qs,qs2,qs3) {
@@ -51,9 +41,13 @@ function flake(x, y) {
         // step
         y += vy + 0.5;
         x += vx;
-        tmp = dx(x, y);
-        vx += tmp[0];
-        vy += tmp[1];
+        // tmp = dx(x, y);
+        with (m) {
+            n = min(5, max(0, q(x/h*6))) + 
+                6 * min(5, max(0, q(y/h*6)));
+        }
+        vx += vfx[n];
+        vy += vfy[n];
         c.translate(x, y);
         // end step
 
