@@ -1,4 +1,4 @@
-var c=document.getElementById('c'),t=0,n=2,f=[],h=600,m=Math,p=m.PI;
+var c=document.body.children[0],t=0,n=2,f=[],h=600,m=Math,p=m.PI;
     a = [
     //y accel
         1,1,1,1,1,1,
