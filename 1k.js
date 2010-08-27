@@ -20,7 +20,7 @@ b.style.background = "black";
 c=b.children[0];
 c.height = c.width = h;
 c = c.getContext('2d');
-c.strokeStyle = "#DDD";
+c.strokeStyle = "#FFF";
 c.lineWidth = 0.3;
 
 function k(x, y) {
