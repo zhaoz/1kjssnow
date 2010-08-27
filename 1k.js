@@ -27,7 +27,8 @@ function k(x, y) {
     var vx = m.r()/4 * (m.q(m.r()) ? -1 : 1),
         vy = m.r()+0.5, n,
         dc=m.q(m.r()*150)+450,
-        s = m.r()*3+2;
+        s = m.r()*3+2, ii,
+        qs = s/6, qs2 = 4 * qs, qs3=3*qs;
     this.d = function () {
         if (!dc--) {
             for (tmp in f) {
@@ -36,7 +37,7 @@ function k(x, y) {
             f.splice(tmp, 1);
             return
         }
-        var ii = 9, qs = s/6, qs2 = 4 * qs, qs3=3*qs;
+        ii = 9;
 
         // step
         y += vy + 0.2;
