@@ -1,13 +1,14 @@
 var c=document.getElementById('c'),t=0,n=2,f=[],h=600,m=Math,p=m.PI;
-    vfy = [
+    a = [
+    //y accel
         1,1,1,1,1,1,
         -1,1,1,-1,-1,-1,
         1,0,-1,0,0,1,
         -1,-1,0,0,1,1,
         1,1,-1,0,-1,-1,
-        0,0,0,0,0,0
-    ],
-    vfx = [
+        0,0,0,0,0,0,
+
+    // x accel
         1,1,0,-1,1,-1,
         1,0,1,0,-.1,-1,
         1,1,-1,1,-1,-1,
@@ -45,8 +46,8 @@ function flake(x, y) {
             n = min(5, max(0, q(x/h*6))) + 
                 6 * min(5, max(0, q(y/h*6)));
         }
-        vx += vfx[n]/80;
-        vy += vfy[n]/300;
+        vx += a[n+36]/80;
+        vy += a[n]/300;
         with (c) {
             translate(x, y);
             // end step
