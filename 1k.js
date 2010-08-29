@@ -21,9 +21,9 @@ while (ii--) {
     a.push(r()*2 - 1);
 }
 b.style.background = "black";
-c=b.children[0];
-c.height = c.width = h;
-c = c.getContext('2d');
+b=b.children[0];
+b.height = b.width = h;
+c = b.getContext('2d');
 c.strokeStyle = "#FFF";
 c.lineWidth = 0.3;
 
@@ -45,12 +45,14 @@ function k(x, y) {
         // step
         y += vy + 0.2;
         x += vx;
+        if (x > h) x=x-h;
+        if (x < 0) x=h-x;
         with (m) {
             n = min(5, max(0, q(x/h*6))) + 
                 6 * min(5, max(0, q(y/h*6)));
         }
         vx += a[n+36]/80;
-        vy += a[n]/300;
+        vy += a[n]/400;
 
         n = 9;
         with (c) {
