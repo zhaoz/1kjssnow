@@ -1,10 +1,5 @@
 b = document.body, f=[],h=600,m=Math,p=m.PI,t=0,r=m.random,q=m.round;
-    a = [];
-ii = 72;
-while (ii--) {
-    a.push(r()*2 - 1);
-}
-b.style.background = "black";
+b.style.background="black";
 b=b.children[0];
 b.height = b.width = h;
 c = b.getContext('2d');
@@ -14,9 +9,9 @@ c.lineWidth = 0.3;
 function k(x, y) {
     var vx = r()/4 * (q(r()) ? -1 : 1),
         vy = r()+0.5, n,
-        dc=q(r()*150)+450,
+        dc=q(r()*100)+500,
         s = r()*3+2,
-        qs = s/6, qs2 = 4 * qs, qs3=3*qs;
+        qs = s/6, qs2 = s - 4 * qs, qs3=3*qs;
     this.d = function () {
         if (!dc--) {
             for (n in f) {
@@ -31,9 +26,9 @@ function k(x, y) {
         x += vx;
         if (x > h) x=x-h;
         if (x < 0) x=h-x;
-        with (m) {
-            n = min(5, max(0, q(x/h*6))) + 
-                6 * min(5, max(0, q(y/h*6)));
+        with(m) {
+            n = min(5, max(0, q(x/h)*6)) +
+                6 * min(5, max(0, q(y/h)*6));
         }
         vy += a[n]/400;
         vx += a[n+36]/80;
@@ -45,13 +40,13 @@ function k(x, y) {
             // end step
 
             // random rotation
-            rotate(p*r()*0.25);
+            rotate(p*r()/4);
             beginPath();
             while (n--) {
                 lineTo(0, s);
-                moveTo(0, s - qs2);
+                moveTo(0, qs2);
                 lineTo(qs3, s - qs);
-                moveTo(0, s - qs2);
+                moveTo(0, qs2);
                 lineTo(-qs3, s - qs);
                 moveTo(0, 0);
                 rotate(p/4);
@@ -74,4 +69,9 @@ setInterval(function () {
         f[ii].d();
     }
     t++;
+    ii = 72;
+    a= [];
+    while (ii--) {
+        a.push(r()*2 - 1);
+    }
 },50);
