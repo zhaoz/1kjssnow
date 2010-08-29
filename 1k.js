@@ -1,4 +1,4 @@
-b = document.body, f=[],h=600,m=Math,p=m.PI,t=0,r=m.random,q=m.round;
+b = document.body, f=[],h=600,m=Math,p=m.PI,t=0,r=m.random,q=m.round,w=0;
 b.style.background="black";
 b=b.children[0];
 b.height = b.width = h;
@@ -60,6 +60,26 @@ function k(x, y) {
 }
 
 setInterval(function () {
+    a= [];
+    ii = 73;
+    if (w-->0) {
+        while (--ii > 36) {
+            a.push(0);
+        }
+        while (ii--) {
+            a.push(4);
+        }
+    } else {
+        while (--ii) {
+            a.push(r()*2 - 1);
+        }
+
+        if (!q(r()*50)) {
+        console.log("wind");
+            w = 10;
+        }
+    }
+
     if (!q(r()*2)) {
         new k(r()*h, 0);
     }
@@ -69,9 +89,4 @@ setInterval(function () {
         f[ii].d();
     }
     t++;
-    ii = 72;
-    a= [];
-    while (ii--) {
-        a.push(r()*2 - 1);
-    }
 },50);
