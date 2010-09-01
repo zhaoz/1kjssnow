@@ -29,9 +29,16 @@ function k(x, y) {
         with(m) {
             n = min(5, max(0, q(x/h)*6)) +
                 6 * min(5, max(0, q(y/h)*6));
+            vy += a[n]/400;
+            vx += a[n+36]/80;
+            if (abs(vx) > 10) {
+                vx = 10 * (vx < 0 ? -1 : 1);
+            }
+            if (abs(vy) > 10) {
+                vy = 10 * (vy < 0 ? -1 : 1);
+            }
         }
-        vy += a[n]/400;
-        vx += a[n+36]/80;
+
 
         n = 9;
         with (c) {
