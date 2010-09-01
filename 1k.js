@@ -60,24 +60,26 @@ function k(x, y) {
 }
 
 setInterval(function () {
-    a= [];
     ii = 73;
-    if (w-->0) {
-        while (--ii > 36) {
-            a.push(0);
-        }
-        while (ii--) {
-            a.push(4);
+    if (w <= 0) {
+        if (!q(r()*100)) {
+            a= [];
+            w = 20;
+            while (--ii > 36) {
+                a.push(1);
+            }
+            while (ii--) {
+                a.push(4);
+            }
+        } else if (!w) {
+            a= [];
+            w = -1;
+            while (--ii) {
+                a.push(r()*2 - 1);
+            }
         }
     } else {
-        while (--ii) {
-            a.push(r()*2 - 1);
-        }
-
-        if (!q(r()*50)) {
-        console.log("wind");
-            w = 10;
-        }
+        w--;
     }
 
     if (!q(r()*2)) {
