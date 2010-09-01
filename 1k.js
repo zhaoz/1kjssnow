@@ -1,4 +1,4 @@
-b = document.body, f=[],h=600,m=Math,p=m.PI,t=0,r=m.random,q=m.round,w=0;
+var b = document.body, f=[],h=600,m=Math,p=m.PI,t=0,r=m.random,q=m.round,w=0, c;
 b.style.background="black";
 b=b.children[0];
 b.height = b.width = h;
